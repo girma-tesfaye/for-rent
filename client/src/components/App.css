@@ -74,7 +74,7 @@ body {
 
 
 /******************************
- Signup component styles
+ Signin component styles
 *******************************/
 
 .signin-container {
@@ -85,4 +85,100 @@ body {
   height: 100vh;
   width: 100%;
   opacity: 0.8;
+}
+
+/******************************
+ AdminDashboard component styles
+*******************************/
+
+.admin-dashboard-container .btn-1 {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  padding: 8px;
+  color: aliceblue;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-dashboard-container .btn-1 svg {
+  margin-right: 3px;
+}
+
+.admndshbrd-modal-header {
+  background: rgb(3, 169, 244);
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 15px;
+  text-align: start;
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: aliceblue;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 5px 5px 0 0;
+  /* background:  'rgb(244, 67, 54)'; */
+}
+
+.admndshbrd-modal-header button {
+  float: right;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.admndshbrd-modal-header svg {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: aliceblue;
+  width: 25px;
+  height: 25px;
+}
+
+.admndshbrd-modal-form {
+  padding: 15px;
+  width: 100%;
+} 
+
+.admndshbrd-modal-form p {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  line-height: 0;
+}
+
+.admndshbrd-modal-form input {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  width: 100%;
+  padding: 5px;
+  border: 2px solid rgb(3, 169, 244);
+  border-radius: 3px;
+}
+
+.admndshbrd-modal-form input:focus {
+  border: 2px solid rgb(3, 169, 244);
+  border-radius: 3px;
+}
+
+.admndshbrd-modal-footer {
+  border-top: 1px solid rgb(3, 169, 244);
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.admndshbrd-modal-footer button {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

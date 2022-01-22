@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { errorMsgAlert, successMsgAlert } from '../helpers/Message';
+import { isAuthenticated } from '../helpers/auth';
 import { showLoading } from '../helpers/Loading';
 import { signup } from '../api/auth'
 import { Button, Typography } from '@mui/material';
@@ -10,12 +11,21 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 
-import {Link} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import equals from 'validator/lib/equals';
 
 const SignUp = () => {
+    const history = useHistory();
+
+    useEffect(() => {
+        if (isAuthenticated() && isAuthenticated().role === 1) { 
+            history.push('/admin/dashboard');
+        } else if (isAuthenticated() && isAuthenticated().role === 0) {
+            history.push('/user/dashboard');
+        }
+    }, [history]);
 
     const [formData, setFormData] = useState({
         fullName: '',

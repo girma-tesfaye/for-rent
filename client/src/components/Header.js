@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Fragment } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,7 +16,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
-import {Link} from 'react-router-dom';
+import { isAuthenticated, logout } from '../helpers/auth';
+import { Link, withRouter } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,7 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+const Header = ({ history }) => {
+  const handleLogout = evt => {
+    logout(() => {
+      history.push('/signin');
+    });
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -101,16 +107,41 @@ export default function Header() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem>
-        <Link to='/signin' style={{color: '#000', textDecoration: 'none'}}>
-          Sign In
-        </Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to='/signup' style={{color: '#000', textDecoration: 'none'}}>
-          Sign Up
-        </Link>
-      </MenuItem>
+      {!isAuthenticated() && (
+        <Fragment>
+          <MenuItem>
+            <Link to='/signin' style={{color: '#000', textDecoration: 'none'}}>
+              Sign In
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to='/signup' style={{color: '#000', textDecoration: 'none'}}>
+              Sign Up
+            </Link>
+          </MenuItem>
+        </Fragment>
+      )}
+      {isAuthenticated() && isAuthenticated().role === 0 && (
+        <MenuItem>
+          <Link to='/user/dashboard' style={{color: '#000', textDecoration: 'none'}}>
+            Dashboard
+          </Link>
+        </MenuItem>
+      )}
+      {isAuthenticated() && isAuthenticated().role === 1 && (
+        <MenuItem>
+          <Link to='/admin/dashboard' style={{color: '#000', textDecoration: 'none'}}>
+            Dashboard
+          </Link>
+        </MenuItem>
+      )}
+      {isAuthenticated() && (
+        <MenuItem>
+          <button onClick={handleLogout} style={{color: '#000', textDecoration: 'none'}}>
+            Logout
+          </button>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -245,3 +276,5 @@ export default function Header() {
     </Box>
   );
 }
+
+export default withRouter(Header);

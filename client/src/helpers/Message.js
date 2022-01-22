@@ -8,7 +8,7 @@ export const errorMsgAlert = msg => (
         sx={{ 
             backgroundColor:'rgb(253, 237, 237)', 
             p: '4px', 
-            margin: '12px', 
+            margin: '12px 0', 
             display: 'flex', 
             alignItems: 'center', 
             width:'400px' , 
@@ -26,7 +26,7 @@ export const successMsgAlert = msg => (
         sx={{ 
             backgroundColor:'rgb(237, 247, 237)', 
             p: '0px', 
-            margin: '12px', 
+            margin: '12px 0', 
             display: 'flex', 
             alignItems: 'center', 
             width:'400px' , 

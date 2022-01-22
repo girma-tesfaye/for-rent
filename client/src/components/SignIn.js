@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { signin } from '../api/auth'
-import { errorMsgAlert } from '../helpers/Message';
+import { errorMsgAlert } from '../helpers/message';
 import { setAuthentication, isAuthenticated } from '../helpers/auth';
 import { showLoading } from '../helpers/Loading';
 import { Button, Typography } from '@mui/material';
@@ -15,6 +15,15 @@ import isEmpty from 'validator/lib/isEmpty';
 
 
 const SignIn = () => {
+    const history = useHistory();
+
+    useEffect(() => {
+        if (isAuthenticated() && isAuthenticated().role === 1) { 
+            history.push('/admin/dashboard');
+        } else if (isAuthenticated() && isAuthenticated().role === 0) {
+            history.push('/user/dashboard');
+        }
+    }, [history]);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -65,15 +74,20 @@ const SignIn = () => {
             signin(data)
                 .then(response => {
                     setAuthentication(response.data.token, response.data.user);
-
-                    if (response.data.user.role === 1) { 
-                        console.log('redirecting to admin');
+                    
+                    if (isAuthenticated() && isAuthenticated().role === 1) { 
+                        history.push('/admin/dashboard');
                     } else {
-                        console.log('redirecting to user');
+                        history.push('/user/dashboard');
                     }
                 })
                 .catch(err => {
                     console.log('signin api function error: ', err);
+                    setFormData({
+                        ...formData,
+                        loading: false,
+                        errorMsg: err.response.data.errorMessage,
+                    });
                 })
         }
     };

@@ -1,5 +1,5 @@
-import { setLocalStorage, getLocalStorage } from './localStorage'
-import { setCookie, getCookie } from './cookies'
+import { setLocalStorage, getLocalStorage, deleteLocalStorage } from './localStorage'
+import { setCookie, deleteCookie /* , getCookie */ } from './cookies'
 
 export const setAuthentication = (token, user) => {
     setCookie('token', token);
@@ -7,9 +7,23 @@ export const setAuthentication = (token, user) => {
 }
 
 export const isAuthenticated = () => {
-    if (getCookie('token') && getLocalStorage('user')) {
+
+    if (getLocalStorage('user')) {
+        return getLocalStorage('user'); 
+   } else {
+       return false
+   }
+
+    /* if (getCookie('token') && getLocalStorage('user')) {
         return getLocalStorage('user');
     } else {
         return false
-    }
+    } */
+}
+
+export const logout = (next) => {
+    deleteCookie('token');
+    deleteLocalStorage('user');
+
+    next();
 }
