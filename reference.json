@@ -1,0 +1,13 @@
+{
+    "admin-dashboard": {
+        "createCategery": {},
+        "users":{},
+        "assetActions":{}
+    },
+    "user-dashboard": {
+        "categery": {},
+        "createAsset":{}
+    }
+}
+
+

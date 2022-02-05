@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { signin } from '../api/auth'
-import { errorMsgAlert } from '../helpers/message';
+import { errorMsgAlert } from '../helpers/Message';
 import { setAuthentication, isAuthenticated } from '../helpers/auth';
 import { showLoading } from '../helpers/Loading';
 import { Button, Typography } from '@mui/material';

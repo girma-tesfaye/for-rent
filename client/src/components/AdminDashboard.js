@@ -18,6 +18,7 @@ import { createCategory } from '../api/category';
 
 import { errorMsgAlert, successMsgAlert } from '../helpers/Message';
 import { showLoading } from '../helpers/Loading';
+import AdminCategoryModal from './AdminCategoryModal';
 import isEmpty from 'validator/lib/isEmpty';
 
 
@@ -73,6 +74,7 @@ const AdminDahboard = () => {
                 .then(response => {
                     setLoading(false);
                     setSuccessMsg(response.data.successMessage);
+                    setCategory('');
                 })
                 .catch(err => {
                     setLoading(false);
@@ -93,75 +95,87 @@ const AdminDahboard = () => {
                 sx={{ justifyContent: 'center', margin: '0 auto', padding: '20px' }}
             >
                 <Item
-                    sx={{ maxWidth: '250px', width: '100%', background: 'rgb(3, 169, 244)', alignSelf: 'center', padding: '0px' }}
+                    sx={{ 
+                        maxWidth: '250px', 
+                        width: '100%', 
+                        background: 'rgb(3, 169, 244)', 
+                        alignSelf: 'center', 
+                        padding: '0px' 
+                    }}
                 >
-
                     <div>
-                        <form
-                            onClick={handleCategorySubmit}
+                        <button 
+                            className='btn-1' 
+                            onClick={handleOpen}
                         >
-                            <button 
-                                className='btn-1' 
-                                onClick={handleOpen}
-                            >
-                                <AddIcon />
-                                Add Category
-                            </button>
-                            <Modal
-                                aria-labelledby="transition-modal-title"
-                                aria-describedby="transition-modal-description"
-                                open={open}
-                                onClose={handleClose}
-                                closeAfterTransition
-                                BackdropComponent={Backdrop}
-                                BackdropProps={{
-                                timeout: 500,
-                                }}
-                            >
-                                <Fade in={open}>
-                                <Box sx={style}>
-                                    <div className='admndshbrd-modal-header'>
-                                        Add Category
-                                        <button onClick={handleClose}><CloseIcon/></button>
-                                    </div>
-                                    <div className='admndshbrd-modal-form'>
-                                        {errorMsg && errorMsgAlert(errorMsg)}
-                                        {successMsg && successMsgAlert(successMsg)}
-
-                                        {
-                                            loading ? (
-                                                <div style={{textAlign:'center', marginTop: '10px'}}>{showLoading()}</div>
-                                            ):(
-                                                <Fragment>
-                                                    <p>Category</p>
-                                                    <input 
-                                                        type='text'
-                                                        onChange={handleCategoryChange} 
-                                                        name='category'
-                                                        value={category}
-                                                    />
-                                                </Fragment>
-                                            )
-                                        }
-                                       
-                                    </div>
-                                    <div className='admndshbrd-modal-footer'>
-                                        <button onClick={handleClose} style={{background: '#e1e1e1'}}>Close</button>
-                                        <button type='submit' style={{background: 'rgb(3, 169, 244)'}}>Add</button>
-                                    </div>
-                                </Box>
-                                </Fade>
-                            </Modal>
-                        </form>
+                            <AddIcon />
+                            Add Category
+                        </button>
+                        <AdminCategoryModal />
                     </div>
                 </Item>
                 <Item
-                    sx={{ maxWidth: '250px', width: '100%', background: 'rgb(46, 125, 50)', alignSelf: 'center', padding: '0px' }}
+                    sx={{ 
+                        maxWidth: '250px', 
+                        width: '100%', 
+                        background: 'rgb(46, 125, 50)', 
+                        alignSelf: 'center', 
+                        padding: '0px' 
+                    }}
                 >
-                    <button className='btn-1'>
-                        <ViewCozyIcon />
-                        View Assets
-                    </button>
+                    <div>                   
+                        <button onClick={handleOpen} className='btn-1'>
+                            <ViewCozyIcon />
+                            View Assets
+                        </button>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                            timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                            <Box sx={style}>
+                                <div className='admndshbrd-modal-header'>
+                                    Add Category
+                                    <button onClick={handleClose}><CloseIcon/></button>
+                                </div>
+                                <form onSubmit={handleCategorySubmit} noValidate>
+                                <div className='admndshbrd-modal-form'>
+                                    {errorMsg && errorMsgAlert(errorMsg)}
+                                    {successMsg && successMsgAlert(successMsg)}
+
+                                    {
+                                        loading ? (
+                                            <div style={{textAlign:'center', marginTop: '10px'}}>{showLoading()}</div>
+                                        ):(
+                                            <Fragment>
+                                                <p>Category</p>
+                                                <input 
+                                                    type='text'
+                                                    onChange={handleCategoryChange} 
+                                                    name='category'
+                                                    value={category}
+                                                />
+                                            </Fragment>
+                                        )
+                                    }
+                                    
+                                </div>
+                                <div className='admndshbrd-modal-footer'>
+                                    <button onClick={handleClose} style={{background: '#e1e1e1'}}>Close</button>
+                                    <button type='submit' style={{background: 'rgb(3, 169, 244)'}}>Add</button>
+                                </div>
+                                </form>
+                            </Box>
+                            </Fade>
+                        </Modal>
+                    </div>
                 </Item>
                 <Item
                     sx={{ maxWidth: '250px', width: '100%', background: '#1976d2', alignSelf: 'center', padding: '0px' }}

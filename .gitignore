@@ -1,3 +1,4 @@
 /node_modules
+/extras
 db.js
 dev.js

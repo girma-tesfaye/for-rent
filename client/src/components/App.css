@@ -29,7 +29,7 @@ body {
 *******************************/
 
 .signup-container {
-  background-image: url('signup-background.jpg');
+  background-image: url('/images/signup-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -78,7 +78,7 @@ body {
 *******************************/
 
 .signin-container {
-  background-image: url('signin-background.jpg');
+  background-image: url('/images/signin-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -176,6 +176,146 @@ body {
 }
 
 .admndshbrd-modal-footer button {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/***************************
+User Dashboard styles
+***************************/
+
+.userdshbrd-modal {
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /*Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /*Hide scrollbar for Firefox */ 
+}
+
+.userdshbrd-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.user-dashboard-container .btn-1 {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  padding: 8px;
+  color: aliceblue;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-dashboard-container .btn-1 svg {
+  margin-right: 3px;
+}
+
+.userdshbrd-modal-header {
+  background: rgb(3, 169, 244);
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 12px;
+  text-align: start;
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: aliceblue;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  border-radius: 5px 5px 0 0;
+  /* background:  'rgb(244, 67, 54)'; */
+}
+
+.userdshbrd-modal-header button {
+  float: right;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.userdshbrd-modal-header svg {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: aliceblue;
+  width: 25px;
+  height: 25px;
+}
+
+.userdshbrd-modal-form {
+  padding: 0 15px 10px;
+  width: 100%;
+} 
+
+.userdshbrd-modal-form h4 {
+  line-height: 0;
+  font-family: "Trirong", serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.userdshbrd-modal-form p {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  line-height: 0;
+}
+
+.userdshbrd-modal-form input {
+  font-family: "Trirong", serif;
+  font-size: 16px;
+  width: 100%;
+  padding: 7px;
+  margin-top: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+}
+
+.userdshbrd-modal-form input:focus {
+  border: 2px solid rgb(3, 169, 244);
+  border-radius: 5px;
+}
+
+.userdshbrd-modal-form textarea {
+  padding: 7px;
+  margin-top: 5px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.userdshbrd-modal-form textarea:focus {
+  border: 2px solid rgb(3, 169, 244);
+  border-radius: 5px;
+}
+
+.userdshbrd-modal-form textarea:hover {
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+}
+
+.userdshbrd-modal-form select {
+  padding: 7px;
+  margin-top: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+}
+
+.userdshbrd-modal-footer {
+  border-top: 1px solid #e1e1e1;
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.userdshbrd-modal-footer button {
   padding: 6px 12px;
   margin: 0 5px;
   border: none;

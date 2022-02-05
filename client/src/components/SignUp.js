@@ -19,14 +19,6 @@ import equals from 'validator/lib/equals';
 const SignUp = () => {
     const history = useHistory();
 
-    useEffect(() => {
-        if (isAuthenticated() && isAuthenticated().role === 1) { 
-            history.push('/admin/dashboard');
-        } else if (isAuthenticated() && isAuthenticated().role === 0) {
-            history.push('/user/dashboard');
-        }
-    }, [history]);
-
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -46,6 +38,15 @@ const SignUp = () => {
         successMsg, 
         errorMsg 
     } = formData;
+
+    
+    useEffect(() => {
+        if (isAuthenticated() && isAuthenticated().role === 1) { 
+            history.push('/admin/dashboard');
+        } else if (isAuthenticated() && isAuthenticated().role === 0) {
+            history.push('/user/dashboard');
+        }
+    }, [history]);
 
     const handleChange = (evt) => {
         //console.log(evt);

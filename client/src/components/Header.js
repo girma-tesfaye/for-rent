@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -60,13 +60,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = ({ history }) => {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  
   const handleLogout = evt => {
     logout(() => {
       history.push('/signin');
     });
   }
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -108,7 +111,7 @@ const Header = ({ history }) => {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       {!isAuthenticated() && (
-        <Fragment>
+        <div>
           <MenuItem>
             <Link to='/signin' style={{color: '#000', textDecoration: 'none'}}>
               Sign In
@@ -119,7 +122,7 @@ const Header = ({ history }) => {
               Sign Up
             </Link>
           </MenuItem>
-        </Fragment>
+        </div>
       )}
       {isAuthenticated() && isAuthenticated().role === 0 && (
         <MenuItem>
